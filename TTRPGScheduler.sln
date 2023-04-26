@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1705.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTRPGScheduler", "TTRPGScheduler\TTRPGScheduler.csproj", "{F4B8E58F-FB48-4EA6-9995-CEFA7C876AF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4B8E58F-FB48-4EA6-9995-CEFA7C876AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B8E58F-FB48-4EA6-9995-CEFA7C876AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B8E58F-FB48-4EA6-9995-CEFA7C876AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B8E58F-FB48-4EA6-9995-CEFA7C876AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6A58E52-ED7F-460E-9C6A-6A1144FDE825}
+	EndGlobalSection
+EndGlobal
