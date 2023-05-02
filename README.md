@@ -7,6 +7,8 @@ I originally planned to use Stored Procedures in the database to handle more com
 
 The player response table now is delete on cascade if either sessions or players are deleted-as those responses are not needed if the player is no longer part of the group or if a session is cancelled.
 
+Currently only specific endpoints are working. The full application will take many more endpoints.
+
 ######################### Working Endpoints #########################
 
 /api/PlayerAttendance:
@@ -15,6 +17,7 @@ The player response table now is delete on cascade if either sessions or players
 
 /api/Player:
 -GET requests produce a list of playerIds and associated names
+-DELETE requests delete a player and associate attendance responses. Request must send playerId in the body of the player to be deleted.
 
 /api/ProposedSession:
 -GET requests produce a list of VIABLE sessions (sessions have a viability boolean that should be flipped when a player indicates they are not available)
@@ -23,25 +26,16 @@ The player response table now is delete on cascade if either sessions or players
 
 
 ######################### Non-Working Endpoints #########################
-/api/Player:
--DELETE requests work in theory but are currently blocked
-
 /api/PlayerAttendance:
--PUT requests should allow players to update their availability with {int attendanceId, bool availability} but are blocked along with DELETE requests
+-PUT requests allows players to update their availability with {int attendanceId, bool availability}. 
+Currently says it succeeds but does not actually update. 
 
-
-######################### Known Bugs #########################
-
--PUT and DELETE requests are being blocked. Googling indicated this is a web.config issue but I've been unable to find it.
-
--Basic Response has a model but isn't fully implemented. Struggling to create a list that will accept multiple types to hold the response data.
-
-
-Response Body (if it worked):
-{int statusCode, string statusDescription, list<object> response data}
+######################### Response Body #########################
+{int statusCode, string statusDescription, list<ProposedSession> sdata, List<Player> pdata, PlayerAttendance adata}
 
 
 ######################### Future Plans #########################
 -Fix bugs (obvi)
+-Add duplicate protection for proposed sessions
 -continue to develop endpoints and methods for full functionality
 -Add frontend

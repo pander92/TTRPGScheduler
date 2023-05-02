@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -96,28 +97,72 @@ namespace TTRPGScheduler.Controllers
         }
 
         // DELETE: api/Player/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePlayer(int playerId)
+        [HttpDelete]
+        public async Task<Response> DeletePlayer(int playerId)
         {
+            string description = "";
             if (_context.Player == null)
             {
-                return NotFound();
+                description = "Player doesnt exist. ";
+                return new Response(HttpContext.Response.StatusCode, description);
             }
             var player = await _context.Player.FindAsync(playerId);
             if (player == null)
             {
-                return NotFound();
+                description = "Player not found. ";
+                return new Response(HttpContext.Response.StatusCode, description);
             }
 
             _context.Player.Remove(player);
             await _context.SaveChangesAsync();
+            HttpResponse resp = HttpContext.Response;
+            description += "Delete Player " + handleStatusDesc(resp.StatusCode);
 
-            return NoContent();
+            Response final = new Response(resp.StatusCode, description);
+
+            return final;
         }
 
         private bool PlayerExists(int id)
         {
             return (_context.Player?.Any(e => e.playerId == id)).GetValueOrDefault();
+        }
+
+
+        //this just translates status codes into descriptive text
+        public string handleStatusDesc(int statusCode)
+        {
+            string description;
+            if (statusCode >= 200 && statusCode < 300)
+            {
+                description = " Request succeeded";
+            }
+            else if (statusCode == 301)
+            {
+                description = "permanent redirect";
+            }
+            else if (statusCode == 404)
+            {
+                description = "Not found";
+            }
+            else if (statusCode == 500)
+            {
+                description = "internal service error";
+            }
+            else if (statusCode == 503)
+            {
+                description = "service unavailable";
+            }
+            else if (statusCode == 405)
+            {
+                description = "not allowed";
+            }
+            else
+            {
+                description = "unknown error " + statusCode ;
+            }
+
+            return description;
         }
     }
 }
