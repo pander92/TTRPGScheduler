@@ -31,7 +31,8 @@ Currently only specific endpoints are working. The full application will take ma
 
 ### /api/PlayerAttendance:
 -GET requests produce a list of player responses
--POST requests with {int playerId, int sessionId, bool availability} allow users to post their             availability to a particular session
+
+-POST requests with {int playerId, int sessionId, bool availability} allow users to post their availability to a particular session
 
 ### /api/Player:
 -GET requests produce a list of playerIds and associated names
