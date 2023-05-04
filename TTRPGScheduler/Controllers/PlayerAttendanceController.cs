@@ -55,9 +55,8 @@ namespace TTRPGScheduler.Controllers
         public async Task<Response> PutPlayerAttendance(int attendanceId, bool availabiltiy)
         {
             PlayerAttendance updatedAttendance = await _context.PlayerAttendance.FirstOrDefaultAsync(x => x.attendanceId == attendanceId);
-            
-
             updatedAttendance.availability = availabiltiy;
+            Console.WriteLine(updatedAttendance.availability);
             _context.Entry(updatedAttendance).State = EntityState.Modified;
             HttpResponse resp = HttpContext.Response;
             string description = "Put Attendance " + handleStatusDesc(resp.StatusCode);

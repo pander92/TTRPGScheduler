@@ -9,6 +9,20 @@ The player response table now is delete on cascade if either sessions or players
 
 Currently only specific endpoints are working. The full application will take many more endpoints.
 
+######################### Example Response Body #########################
+{
+    "statusCode": 200,
+    "statusDescription": "Post Attendance  Request succeeded",
+    "sdata": null,
+    "pdata": null,
+    "adata": {
+        "attendanceId": 6,
+        "sessionId": 5,
+        "playerId": 3,
+        "availability": true
+    }
+}
+
 ######################### Working Endpoints #########################
 
 /api/PlayerAttendance:
@@ -30,8 +44,6 @@ Currently only specific endpoints are working. The full application will take ma
 -PUT requests allows players to update their availability with {int attendanceId, bool availability}. 
 Currently says it succeeds but does not actually update. 
 
-######################### Response Body #########################
-{int statusCode, string statusDescription, list<ProposedSession> sdata, List<Player> pdata, PlayerAttendance adata}
 
 
 ######################### Future Plans #########################
